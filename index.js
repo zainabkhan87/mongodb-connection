@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./db'); // Import DB connection function
+const userroutes=require('./src/routes/userRoutes')
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('MongoDB connected with Express.js');
 });
+app.use('/user',userroutes)
+app.use('/userid',userroutes)
 
 // Start Server
 const PORT = process.env.PORT || 5000;

@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 });
 app.use('/user',userroutes)
 app.use('/userid',userroutes)
+app.post('/username',userroutes)
 
 // Start Server
 const PORT = process.env.PORT || 5000;

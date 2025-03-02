@@ -40,7 +40,7 @@ const getallcustomers = async (req, res) => {
 }
 
 const getcustomerbyid = async (req, res) => {
-    const customerid = req.query.id
+    const customerid = req.query.customerid
     try {
         const customer = await Customer.findOne({ customerid })
         if (customer) {
@@ -54,5 +54,54 @@ const getcustomerbyid = async (req, res) => {
     }
 }
 
+const updatecustomerbyid= async(req,res)=>{
+    const customerid = req.query.customerid
+    const updatescript={
+        $set:{
+            name: req.body.name,
+            contact: req.body.contact,
+            address: req.body.address,
+            email: req.body.email
+        }
+    }
+    try {
+        const customer = await Customer.updateOne({ customerid }, updatescript)
+        if (customer) {
+            res.status(200).json({ customer })
+        } else {
+            res.status(400).json({ message: 'customer not updated' })
+        }
+    }catch (error) {
+        console.error('Error updating users:', error);
+        res.status(500).json({message: 'Error updating users', error: error})
+    }
 
-module.exports = { getAllusers, getUserById, postUserName, createCustomer, getallcustomers , getcustomerbyid }
+}
+
+const deletecustomerbyid= async(req,res)=>{
+    const customerid = req.query.customerid
+    try {
+        const customer = await Customer.deleteOne({ customerid })
+        if (customer) {
+            res.status(200).json({ customer })
+        } else {
+            res.status(400).json({ message: 'customer not deleted' })
+        }
+    }catch (error) {
+        console.error('Error deleting users:', error);
+        res.status(500).json({message: 'Error deleting users', error: error})
+    }
+
+}
+
+
+module.exports = { 
+     getAllusers,
+     getUserById,
+     postUserName,
+     createCustomer,
+     getallcustomers,
+     getcustomerbyid,
+     updatecustomerbyid,
+     deletecustomerbyid
+}

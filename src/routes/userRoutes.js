@@ -9,5 +9,7 @@ router.post('/username',cont.postUserName)
 router.post('/customer',cont.createCustomer)
 router.get('/getallcustomers',cont.getallcustomers)
 router.get('/getcustomerbyid',cont.getcustomerbyid)
+router.put('/updatecustomerbyid',cont.updatecustomerbyid)
+router.delete('/deletecustomerbyid', cont.deletecustomerbyid)
 
 module.exports = router

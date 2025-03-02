@@ -1,6 +1,8 @@
 const express = require('express');
 const connectDB = require('./db'); // Import DB connection function
 const userroutes=require('./src/routes/userRoutes')
+const cors = require('cors'); // Import the CORS package
+
 
 const app = express();
 
@@ -9,6 +11,8 @@ connectDB();
 
 // Middleware
 app.use(express.json());
+
+app.use(cors()); 
 
 // Example Route
 app.get('/', (req, res) => {
